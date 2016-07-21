@@ -16,7 +16,7 @@ shinyServer(function(input, output, session) {
       output$vrbLabel <- renderText({jsn$dimension[[input$vrb]]$displaylabel})
       output$labels <- renderDataTable(
           datatable(getCategoryInfo(jsn$dimension[[input$vrb]]$category), 
-                    options = list(searching = FALSE, paging = FALSE))
+                    options = list(searching = FALSE, paging = FALSE), escape = FALSE)
           
       )
       updateSelectizeInput(session, 'vrb', choices = names(jsn$dimension), server = TRUE) 
