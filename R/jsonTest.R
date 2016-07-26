@@ -66,21 +66,28 @@ setValueToMissing <- function(rec, vrb, ix) {
         return(FALSE)
     } else {
         jsn <- addToNode(list(vb, "category", "missing"), ix, jsonObj = jsn)
+        saveRecJSON(jsn) 
+        return(TRUE)
+    } 
+}
+
+removeMissingCategory <- function(rec, vrb, ix) {
+    jsn <- getRecJSON(rec)
+    mss <- getNode(list(vrb, "category", "missing", ix), jsonObj = jsn)
+    if(ix %in% mss) {
+        # get the path
+        jsn <- removeFromNode(list(vrb, "category", "missing"), ix, jsn)
+        saveRecJSON(jsn)   
+        return(TRUE)
+    } else {
+        print(paste0("Value: ", ix, " is not missing. No changes made"))
     }
-    saveRecJSON(jsn)    
+     
 }
 
-removeMissingCategory <- function() {
-    # get path to variable
-    
-    # check that it's not missing already
-    
-    # remove missing from vector
-    
-    # save
-}
-
-addCategory <- function(rec, vb) {
+addCategory <- function(rec, vb, ix, lb = NULL) {
+    # get category node for vrb
+    # does either label or value exist already?
     
 }
 
@@ -120,6 +127,15 @@ getRecFiles <- function() {
     fls <- dir("N:/jsonRda/")
     nums <- as.numeric(gsub("^rec(\\d+).json", "\\1", fls))
     data.frame(file = fls, recNum = nums) %>% arrange(recNum)
+}
+
+saveRecFilesWithDoc <- function() {
+    fls <- dir("N:/jsonRda/")
+    nums <- as.numeric(gsub("^rec(\\d+).json", "\\1", fls))
+    out <- nums
+    for(n in 1:length(nums)) {
+
+    }
 }
 
 

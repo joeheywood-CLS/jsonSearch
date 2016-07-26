@@ -103,3 +103,28 @@ getMissingForRec <- function(rn) {
     jsn <- getRecJSON(rn)
     do.call(rbind, lapply(names(jsn$dimension), getMissingLabels, r = jsn))
 }
+
+
+getListPathFromVector <- function(v, l) {
+    txt <- paste0("l[['", paste(v, collapse = "']][['"), "']]")
+    eval(parse(text = txt))
+}
+
+setListPathFromVector <- function(pth, val, l = list()) {
+    out <- 
+    
+    eval(parse(text = txt))
+}
+
+
+buildList <- function(val, pth) {
+    x <- length(pth)
+    out <- list()
+    out[[pth[x]]] <- val
+    print(names(out))
+    if(x > 1) {
+        return(buildList(out, pth[1:(x-1)]))
+    } else {
+        return(out)
+    } 
+}
