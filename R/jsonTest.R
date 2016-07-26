@@ -31,18 +31,18 @@ renameVariable <- function(rec, old, nw) {
 
 getVariableLabel <- function(rec, vb) {
     jsn <- getRecJSON(rec)
-    getNode(c(vb, "displaylabel"), jsn)
+    getNodeValue(c(vb, "displaylabel"), jsn)
 }
 
 setVariableLabel <- function(rec, vb, newLabel) {
     jsn <- getRecJSON(rec)
-    jsn <- setNode(c(vb, "displaylabel"), value = newLabel, jsonObj = jsn)
+    jsn <- setNodeValue(c(vb, "displaylabel"), value = newLabel, jsonObj = jsn)
     saveRecJSON(jsn)
 }
 
 getValueLabel <- function(rec, vb, ix) {
     jsn <- getRecJSON(rec)
-    getNode(list(vb, "category", "label", ix), jsonObj = jsn) 
+    getNodeValue(c(vb, "category", "label", ix), jsn) 
 }
 
 setValueLabel <- function(rec, vb, ix, lab) {
